@@ -30,17 +30,41 @@ class DomUtil {
     }
 
     append(node) {
-        if (node instanceof Element) {
+        if (node instanceof DomUtil) {
             node = node.$el;
         }
 
         if (Element.prototype.append) {
-            this.$el.append(node.$el);
+            this.$el.append(node);
         } else {
-            this.$el.appendChild(node.$el);
+            this.$el.appendChild(node);
         }
 
         return this;
+    }
+
+    closest(selector) {
+       return $(this.$el.closest(selector));
+    }
+
+    get dataSet() {
+        return this.$el.dataset;
+    }
+
+    getCoords() {
+        return this.$el.getBoundingClientRect();
+    }
+
+    findAll(selector) {
+        return this.$el.querySelectorAll(selector);
+    }
+
+    css(styles) {
+        for (let style in styles) {
+            this.$el.style[style] = styles[style];
+        }
+
+        return this.$el;
     }
 }
 
