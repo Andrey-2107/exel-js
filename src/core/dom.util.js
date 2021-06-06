@@ -59,12 +59,8 @@ class DomUtil {
         return this.$el.querySelectorAll(selector);
     }
 
-    css(styles) {
-        for (let style in styles) {
-            this.$el.style[style] = styles[style];
-        }
-
-        return this.$el;
+    css(styles = {}) {
+        Object.keys(styles).forEach((styleName) => this.$el.style[styleName] = styles[styleName]);
     }
 }
 
